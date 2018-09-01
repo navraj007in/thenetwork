@@ -22,49 +22,64 @@ var Profile = mongoose.model('Profile',{
     Country :{
         type : String
     },
-    Description : {
+    CoverURL :{
+        type: String
+    },
+    ProfileImageURL :{
+        type: String
+    },
+    URLs :{
+        type: String
+    },
+    Reputations :{
+        type: String
+    },
+    Bio : {
         type : String
     },
-    Height : {
+    Schools : {
         type : String
     },
-    BodyType : {
+    Colleges : {
         type : String
     },
     RelationShipStatus :{ 
         type : String
     },
-    LifeStyle : {
+    Workplaces : {
         type : String
     },
-    NetWorth : {
+    Favorites : {
         type : String
     },
-    AnnualIncome : {
+    Places : {
         type : String
     },
-    Ethnicity :{
+    Contact :{
         type: String
     },
-    HairColor :{
+    PhotoAlbums :{
         type: String
     },
-    Occupation :{
+    VideoAlbums :{
         type: String
     },
     Education :{
         type: String
     },
-    Children :{
+    Friends :{
         type: String
     },
-    Smoking :{
+    Family :{
         type: String
     },
-    Drinking :{
+    Colleagues :{
         type: String
     },
-    LookingFor :{
+    Neighbors :{
+        type: String
+    },
+    Groups :{
         type: String
     },
     Tags :{

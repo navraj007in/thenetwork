@@ -36,7 +36,7 @@ exports.setprofile = function(req,res) {
 };
 
 exports.createuser = function(req,res) {
-  
+      console.log('in function');
         var body = _.pick(req.body, ['email', 'password','username']);
     
         var user = new User(body);
