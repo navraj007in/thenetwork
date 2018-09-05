@@ -1,5 +1,7 @@
 const _ = require('lodash');
 var {Post} = require('./../model/post');
+var {User} = require('./../model/user');
+
 var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 
@@ -38,15 +40,29 @@ exports.editpost = function(req,res) {
 
 exports.getuserposts = function(req,res) {
     var id = req.params.id;
-
-    Post.find( {'_creator': id} ,function(err,user){
-        if(err){
-            res.status(401).send();
-        }
-        else {
-            res.status(200).send(user);
-        }
+    User.findOne({'username': id},(err,user) =>{
+        if(err)
+            res.send(500);
+        Post.find({'_creator': user._id}, (err,posts) =>{
+            if(err){
+                console.log(err);
+                res.status(401).send();
+            }
+            else {
+                res.status(200).send(posts);
+            }
+        });
     });
+
+    // Post.find( {'_creator': id} ,function(err,user){
+    //     if(err){
+    //         console.log(err);
+    //         res.status(401).send();
+    //     }
+    //     else {
+    //         res.status(200).send(user);
+    //     }
+    // });
 
 };
 
@@ -61,8 +77,9 @@ exports.getmyposts = function(req,res) {
 };
 
 exports.deletepost = function(req,res) {
+    var id = req.params.id;
     Post.findOneAndRemove(
-        {_creator: req.user._id}, // find a document with that filter
+        {'_creator': req.user._id,'_id': id}, // find a document with that filter
         function (err, doc) { // callback
             if (err) {
                 res.status(401).send();

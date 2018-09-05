@@ -40,7 +40,7 @@ app.post('/users/profile', authenticate, profileapis.setprofile);
 app.get('/posts',authenticate,postapis.getmyposts);
 app.get('/posts/:id',authenticate,postapis.getuserposts);
 app.post('/posts',authenticate,postapis.createpost);
-
+app.delete('/posts/:id',authenticate,postapis.deletepost);
 
 app.post('/activities', authenticate, activityapis.createactivity);
 app.get('/activities/type/:id', authenticate, activityapis.getactivities);
