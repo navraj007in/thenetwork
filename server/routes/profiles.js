@@ -15,8 +15,8 @@ exports.myprofile = function(req,res) {
 
 exports.getuserprofile = function(req,res) {
     var id = req.params.id;
-
-    Profile.findById( id ,function(err,user){
+    console.log(id);
+    Profile.findOne( {'UserName': id} ,function(err,user){
         if(err){
             res.status(401).send();
         }
@@ -38,7 +38,7 @@ exports.setprofile = function(req,res) {
                 // handle error
             } else {
                 // handle document
-                res.status(200).send();
+                res.status(200).send(doc);
 
             }
         }

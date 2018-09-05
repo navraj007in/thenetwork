@@ -2,7 +2,9 @@ mongoose = require('mongoose');
 
 var Profile = mongoose.model('Profile',{
     UserName :{
-        type : String
+        type : String,
+        unique: true,
+        minlength: 5
     },
     Heading :{
         type : String,
@@ -91,7 +93,8 @@ var Profile = mongoose.model('Profile',{
     },
     _creator: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true
+        required: true,
+        unique: true
       },
      
 });

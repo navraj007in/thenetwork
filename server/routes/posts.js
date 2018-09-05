@@ -1,18 +1,19 @@
 const _ = require('lodash');
 var {Post} = require('./../model/post');
-
+var Schema = mongoose.Schema,
+    ObjectId = Schema.ObjectId;
 
 exports.createpost = function(req,res) {
-    var post = new Post();
+    var post = new Post(req.body);
 
-    post = req.body;
-    post._creator = req.user._id;
-    
-    post.save(post).then(() =>{
-        res.send(200);
-    }).catch((e) =>{
-        console.log(e);
-        res.status(401).send();
+    post._creator = (req.user._id);
+    post._updatedAt = post._createdAt = Date.now();
+    post.save((err,doc)=>{
+        if(err){
+            console.log(err);
+            res.send(500);
+        }
+        res.status(200).send(doc);
     });
 
 };

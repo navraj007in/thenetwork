@@ -8,6 +8,7 @@ var {User} = require('./model/user');
 userapis = require('./routes/users');
 profileapis = require('./routes/profiles');
 activityapis = require('./routes/activities');
+postapis = require('./routes/posts');
 
 var {authenticate} = require('./middleware/authenticate');
 
@@ -34,6 +35,12 @@ app.delete('/users/me/token', authenticate, userapis.logout);
 app.get('/users/me',authenticate, profileapis.myprofile);
 app.get('/users/profile/:id',authenticate, profileapis.getuserprofile);
 app.post('/users/profile', authenticate, profileapis.setprofile);
+
+// Post APIs
+app.get('/posts',authenticate,postapis.getmyposts);
+app.get('/posts/:id',authenticate,postapis.getuserposts);
+app.post('/posts',authenticate,postapis.createpost);
+
 
 app.post('/activities', authenticate, activityapis.createactivity);
 app.get('/activities/type/:id', authenticate, activityapis.getactivities);

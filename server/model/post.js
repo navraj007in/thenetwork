@@ -1,9 +1,9 @@
 mongoose = require('mongoose');
 
-Comment = new Schema({
+Comment = new mongoose.Schema({
     text:{
-        type:String,
-        required:true
+        type: String,
+        required: true
     },
     _creator: {
         type: mongoose.Schema.Types.ObjectId,
@@ -11,12 +11,6 @@ Comment = new Schema({
       },
     author:{
         type:String,
-        validate:[validator({
-            length:{
-                min:3,
-                max:20
-            }
-        }), "username"],
         required:false,
         default:"anonymous"
     },
@@ -27,7 +21,7 @@ Comment = new Schema({
     }
 });
 
-Reaction = new Schema({
+Reaction = new mongoose.Schema({
     _creator: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
@@ -48,10 +42,6 @@ var PostSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true
       },
-      _otherUser: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true
-      },
       post:{
         type: String
       },
@@ -67,7 +57,7 @@ var PostSchema = new mongoose.Schema({
           type: Date
       },
       reactions: {type: [Reaction]},
-      _createdAt : {
+      _updatedAt : {
           type: Date
       },
       
